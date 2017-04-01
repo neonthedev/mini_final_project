@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>login form</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+	<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
+	<style>
+		body{
+			font-family: 'Merriweather', serif;
+			font-size: 40px;
+		}
+		.register input {
+    padding: 5px 14px;
+    border: 1px solid ##154877;
+    font-size: 16px;
+    height: 45px;
+    width: 250px;
+    text-align: center;
+}
+.register .short{
+    font-weight:bold;
+    color:#FF0000;
+    font-size:larger;
+}
+.register .medium{
+    font-weight:bold;
+    color:#2D98F3;
+    font-size:larger;
+}
+.register .strong{
+    font-weight:bold;
+    color: limegreen;
+    font-size:larger;
+}
+	</style>
+
+ 
+</head>
+<body>
+ 
+
+<div class="container">
+	<div class="col-sm-6">
+		 
+
+<form action="test.html" method="post">
+	 
+			<div class="row">
+				<div class="login-form">
+
+					<div class="alert-msg">
+						<div class=" alert-success" style="display:none;">
+							<strong>Success!</strong> Login Successful.
+						</div>
+						<div id="common-alert" class=" alert-danger" style="display:none;">
+							<strong>Error!</strong> Are you out of your mind? Input exact credential. lol
+						</div>
+						 
+
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group"> 
+							<input type="text" name="username" id="username" class="form-control">
+						</div>
+					</div>
+
+
+
+					<div class="col-md-12">
+						<div class="form-group register input"> 
+							<input type="password" name="password" id="password" class="form-control">
+							<span id="result"></span>
+						</div>
+					</div>
+
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<button type="button" class="btn btn-info" id="reset">Reset</button>
+							<button type="button" class="btn btn-success pull-right" id="login">Login</button>
+						</div>
+					</div>
+				</div>
+			</div> 
+		</form>
+	</div>
+</div>
+
+
+ 
+
+ 
+</div>
+</div> 
+ 
+
+
+ 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+<script>
+$(function(){
+
+	  $("button.btn-success").click(function(){
+	  	var username=$("input:text").val();
+	  	var password=$("input:password").val();
+	  	//$("span").text(username + password);
+	  	if (username == "admin" || password == "admin") {
+	  		$(".alert-success").css("display","block");
+	  		window.location.href= "admin.html"
+	  	} else {
+	  		$(".alert-danger").css("display","block");
+	  		
+	  	}
+	  })    
+});
+</script>
+<script>
+        $(document).ready(function()
+{   
+    $('#password').keyup(function()
+    {
+        $('#result').html(checkStrength($('#password').val()))
+    })  
+        
+    function checkStrength(password)
+    {
+        var strength = 0
+        
+        if (password.length < 6) { 
+            $('#result').removeClass()
+            $('#result').addClass('short')
+            return 'Too short' 
+        }
+        
+        if (password.length > 7) strength += 1
+        
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))  strength += 1
+        if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/))  strength += 1 
+        
+        if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/))  strength += 1
+        
+        if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            
+        if (strength < 2 )
+        {
+            $('#result').removeClass()
+            $('#result').addClass('weak')
+            return 'Weak'           
+        }
+        else if (strength == 2 )
+        {
+            $('#result').removeClass()
+            $('#result').addClass('medium')
+            return 'medium'       
+        }
+        else
+        {
+            $('#result').removeClass()
+            $('#result').addClass('strong')
+            return 'Strong'
+        }
+    }
+});
+    </script>
+
+
+    </body>
+</html>
+
+</body>
+</html>
+
+ 
